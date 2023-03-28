@@ -4,6 +4,7 @@
 // init project
 const express = require("express");
 const app = express();
+const { isValidDate } = require("./dateChecker");
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC
@@ -23,7 +24,22 @@ app.get("/api/hello", function (req, res) {
   res.json({ greeting: "hello API" });
 });
 
+app.get("/api/:date?", (req, res) => {
+  let date = req.params.date;
+  const dateReg = /^[0-9]+$/;
+  const isTimeStamp = dateReg.test(date);
+
+  if (!isTimeStamp) {
+    const getTimeStamp = Date.parse(date);
+    const utcDate = new Date(getTimeStamp).toUTCString();
+
+    getTimeStamp
+      ? res.json({ unix: getTimeStamp, utc: utcDate })
+      : res.json({ error: "Invalid date" });
+  }
+});
+
 // listen for requests :)
-const listener = app.listen(process.env.PORT, function () {
+const listener = app.listen(process.env.PORT || 3000, function () {
   console.log("Your app is listening on port " + listener.address().port);
 });
