@@ -43,6 +43,13 @@ app.get("/api/:date?", (req, res) => {
   }
 });
 
+app.get("/api/", (req, res) => {
+  const todayDate = new Date().toUTCString();
+  const getUnix = Date.parse(todayDate);
+
+  res.json({ unix: getUnix, utc: todayDate });
+});
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT || 3000, function () {
   console.log("Your app is listening on port " + listener.address().port);
