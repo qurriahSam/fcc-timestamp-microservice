@@ -24,7 +24,13 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/", (req, res) => {
-  let date = new Date();
+  function addHours(date, hours) {
+    date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+    return date;
+  }
+
+  let date = addHours(new Date(), 3);
+
   res.json({ unix: date.getTime(), utc: date.toUTCString() });
 });
 
