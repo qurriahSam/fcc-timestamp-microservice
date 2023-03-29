@@ -23,7 +23,7 @@ app.get("/api/hello", function (req, res) {
   res.json({ greeting: "hello API" });
 });
 
-app.get("/api/", (req, res) => {
+app.get("/api", (req, res) => {
   function addHours(date, hours) {
     date.setTime(date.getTime() + hours * 60 * 59 * 1000);
     return date;
