@@ -24,12 +24,8 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/", (req, res) => {
-  const todayDate = new Date()
-    .toLocaleTimeString("en-US", { timeZone: "Africa/Nairobi" })
-    .toUTCString();
-  const getUnix = Date.parse(todayDate);
-
-  res.json({ unix: getUnix, utc: todayDate });
+  let date = new Date();
+  res.json({ unix: date.getTime(), utc: date.toUTCString() });
 });
 
 app.get("/api/:date?", (req, res) => {
