@@ -25,7 +25,7 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/", (req, res) => {
   function addHours(date, hours) {
-    date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+    date.setTime(date.getTime() + hours * 60 * 59 * 1000);
     return date;
   }
 
