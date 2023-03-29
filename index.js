@@ -29,7 +29,8 @@ app.get("/api", (req, res) => {
     return date;
   }
 
-  let date = addHours(new Date(), 3);
+  //let date = addHours(new Date(), 3);
+  let date = new Date();
 
   res.json({ unix: date.getTime(), utc: date.toUTCString() });
 });
