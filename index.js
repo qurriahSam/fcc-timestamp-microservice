@@ -23,6 +23,13 @@ app.get("/api/hello", function (req, res) {
   res.json({ greeting: "hello API" });
 });
 
+app.get("/api/", (req, res) => {
+  const todayDate = new Date().toUTCString();
+  const getUnix = Date.parse(todayDate);
+
+  res.json({ unix: getUnix, utc: todayDate });
+});
+
 app.get("/api/:date?", (req, res) => {
   let date = req.params.date;
   const dateReg = /^[0-9]+$/;
@@ -41,13 +48,6 @@ app.get("/api/:date?", (req, res) => {
 
     res.json({ unix: getTimeStamp, utc: utcDate });
   }
-});
-
-app.get("/api/", (req, res) => {
-  const todayDate = new Date().toUTCString();
-  const getUnix = Date.parse(todayDate);
-
-  res.json({ unix: getUnix, utc: todayDate });
 });
 
 // listen for requests :)
