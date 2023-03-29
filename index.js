@@ -51,11 +51,6 @@ app.get("/api/:date", function (req, res) {
   }
 });
 
-// No matching route
-app.use(function (req, res, next) {
-  res.status(404).sendFile(`${__dirname}/views/404.html`);
-});
-
 // listen for requests :)
 const listener = app.listen(process.env.PORT || 3000, function () {
   console.log("Your app is listening on port " + listener.address().port);
